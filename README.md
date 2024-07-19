@@ -45,8 +45,6 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 ## Example of VHH sequence generation for all positions
 
+<iframe src="https://giphy.com/embed/OAyIxZwcW1ZwKW8V2P" width="380" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/OAyIxZwcW1ZwKW8V2P">via GIPHY</a></p>
 
-
-<p float="left">
-  <img src="https://drive.google.com/file/d/1qTCyW5_4CxNlKdMo1zDaWDVeC3EFtN7G/view?usp=drive_link" width="400" />
-
+<iframe src="https://giphy.com/embed/Q7z1lwDHFZBOASkIDD" width="480" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/Q7z1lwDHFZBOASkIDD">via GIPHY</a></p>
