@@ -44,7 +44,7 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 ```
 
 
-<img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="500">
+<img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="800">
 
 
 
