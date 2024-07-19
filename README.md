@@ -1,6 +1,6 @@
 # NanoGEN
 
-This project uses the ESM2 language model to generate sequences for antibody and antibody fragments. The primary objective is to generate antibody sequences with specific Complementarity-Determining Regions (CDRs) and framework modifications.
+This project uses the ESM2 language model (https://github.com/facebookresearch/esm) to generate sequences for antibody and antibody fragments. The primary objective is to generate antibody sequences with specific Complementarity-Determining Regions (CDRs) and framework modifications.
 
 ## Installation
 Setting up the environment using the .yaml:
