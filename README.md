@@ -45,6 +45,7 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 ![VHH design](https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif)
 
 
+<img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="300">
 
 
 
