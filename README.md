@@ -42,10 +42,8 @@ CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr"
 FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 ```
+![VHH design](https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif)
 
-<a href="https://drive.google.com/uc?export=view&id=17lTznQPYTfNG2tvA53lCa0VjTUihGkH2"><img src="https://drive.google.com/uc?export=view&id=17lTznQPYTfNG2tvA53lCa0VjTUihGkH2" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
-
-<a href="https://drive.google.com/uc?export=view&id=1qTCyW5_4CxNlKdMo1zDaWDVeC3EFtN7G"><img src="https://drive.google.com/uc?export=view&id=1qTCyW5_4CxNlKdMo1zDaWDVeC3EFtN7G" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
 
 
