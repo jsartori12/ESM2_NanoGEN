@@ -45,9 +45,8 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 ## Example of VHH sequence generation for all positions
 
-<div style="text-align: center;">
-    <img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="500">
-</div>
 
 
+<p float="left">
+  <img src="https://drive.google.com/file/d/1qTCyW5_4CxNlKdMo1zDaWDVeC3EFtN7G/view?usp=drive_link" width="400" />
 
