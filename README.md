@@ -7,12 +7,6 @@ This project uses the ESM2 language model (https://github.com/facebookresearch/e
   <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" height="300" width="400" />
 </div>
 
-<div style="display: flex; justify-content: center;">
-  <img src="https://media.giphy.com/media/OAyIxZwcW1ZwKW8V2P/giphy.gif" height="300" width="400" style="margin-right: 10px;" />
-  <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" height="300" width="400" />
-</div>
-
-
 ## Installation
 Setting up the environment using the .yaml:
 <br />
