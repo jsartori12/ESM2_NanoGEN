@@ -45,11 +45,8 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 
 <div style="text-align: center;">
-    <img src="[URL_of_GIF](https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif)" alt="Description of GIF" width="600">
+    <img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="500">
 </div>
-
-<img src="https://github.com/jsartori12/ESM2_NanoGEN/blob/main/output_fasta.gif" alt="Demo" width="800">
-
 
 
 
