@@ -45,6 +45,7 @@ FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 <a href="https://drive.google.com/uc?export=view&id=17lTznQPYTfNG2tvA53lCa0VjTUihGkH2"><img src="https://drive.google.com/uc?export=view&id=17lTznQPYTfNG2tvA53lCa0VjTUihGkH2" style="width: 500px; max-width: 100%; height: auto" title="Click for the larger version." /></a>
 
+![GIF of my project](https://drive.google.com/uc?export=view&id=17lTznQPYTfNG2tvA53lCa0VjTUihGkH2)
 
 
 
