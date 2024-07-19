@@ -1,8 +1,8 @@
 # NanoGEN
 
 <div style="display: flex; justify-content: flex-start;">
-  <img src="https://media.giphy.com/media/OAyIxZwcW1ZwKW8V2P/giphy.gif" height="300" style="margin-right: 10px;" />
-  <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" height="300" />
+  <img src="https://media.giphy.com/media/OAyIxZwcW1ZwKW8V2P/giphy.gif" height="300" width="400" style="margin-right: 10px;" />
+  <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" height="300" width="400"/>
 </div>
 
 
