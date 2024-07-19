@@ -1,5 +1,11 @@
 # NanoGEN
 
+<div style="display: flex; justify-content: flex-start;">
+  <img src="https://media.giphy.com/media/OAyIxZwcW1ZwKW8V2P/giphy.gif" height="300" style="margin-right: 10px;" />
+  <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" height="300" />
+</div>
+
+
 This project uses the ESM2 language model (https://github.com/facebookresearch/esm) to generate sequences for antibody and antibody fragments. The primary objective is to generate antibody sequences with specific Complementarity-Determining Regions (CDRs) and framework modifications.
 
 ## Installation
@@ -42,11 +48,4 @@ CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr"
 FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
 
 ```
-
-## Example of VHH sequence generation for all positions
-
-<div style="display: flex; justify-content: flex-start;">
-  <img src="https://media.giphy.com/media/OAyIxZwcW1ZwKW8V2P/giphy.gif" width="400" />
-  <img src="https://media.giphy.com/media/Q7z1lwDHFZBOASkIDD/giphy.gif" width="400" />
-</div>
 
