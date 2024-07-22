@@ -1,4 +1,4 @@
-# NanoGEN
+# ESM2_NanoGEN
 
 This project uses the ESM2 language model (https://github.com/facebookresearch/esm) to generate sequences for antibody and antibody fragments. The primary objective is to generate antibody sequences with specific Complementarity-Determining Regions (CDRs) and framework modifications.
 
@@ -13,8 +13,8 @@ Setting up the environment using the .yaml:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/jsartori12/NanoGEN.git
-    cd NanoGEN
+    git clone https://github.com/jsartori12/ESM2_NanoGEN.git
+    cd ESM2_NanoGEN
     ```
 2. Create the environment:
     ```sh
