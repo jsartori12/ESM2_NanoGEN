@@ -8,9 +8,11 @@ Created on Fri Jul 19 15:19:40 2024
 
 import torch
 import esm
+import random
 
 # Load ESM-2 model
-model, alphabet = torch.hub.load("facebookresearch/esm:main", "esm2_t33_650M_UR50D")
+#model, alphabet = torch.hub.load("facebookresearch/esm:main", "esm2_t33_650M_UR50D")
+model, alphabet = esm.pretrained.esm2_t33_650M_UR50D()
 batch_converter = alphabet.get_batch_converter()
 model.eval()  # disables dropout for deterministic results
 
@@ -37,7 +39,7 @@ def insert_mask(sequence, position, mask="<mask>"):
     else:
         raise TypeError("Sequence must be a string or list.")
 
-def complete_mask(input_sequence, posi):
+def complete_mask(input_sequence, posi, temperature=1.0):
     
     data = [
         ("protein1", insert_mask(input_sequence, posi, mask="<mask>"))
@@ -50,6 +52,9 @@ def complete_mask(input_sequence, posi):
     with torch.no_grad():
         token_probs = model(batch_tokens, repr_layers=[33])["logits"]
 
+    # Apply temperature
+    token_probs /= temperature
+    
     softmax = torch.nn.Softmax(dim=-1)
     probabilities = softmax(token_probs)
 
@@ -58,9 +63,12 @@ def complete_mask(input_sequence, posi):
 
     # Extract the predicted tokens for the masked positions
     predicted_tokens = torch.argmax(probabilities, dim=-1)
+    
+    # Sample from the probability distribution
+    predicted_tokens = torch.multinomial(probabilities[mask_idx], num_samples=1).squeeze(-1)
 
     # Replace the <mask> token with the predicted token
-    batch_tokens[mask_idx] = predicted_tokens[mask_idx]
+    batch_tokens[mask_idx] = predicted_tokens
 
 
     predicted_residues = [alphabet.get_tok(pred.item()) for pred in batch_tokens[0]]
@@ -89,34 +97,84 @@ def create_masked_sequences(sequence, masked_pos, cdrs_or_fm):
                 masked_sequences.append((f"protein1 with mask at position {i+1}", masked_sequence))
         return masked_sequences
 
-def generate_Sequence(input_sequence, cdrs, loc):
-    
-    new_sequences = []
 
+def generate_Sequence(input_sequence, cdrs, loc, temperature = 1.0, order='random'):
+    
     new_sequence_temp = input_sequence
     
-    if loc == "all":    
-        for i in range(len(input_sequence)):
-            new_sequence_temp = complete_mask(input_sequence = new_sequence_temp, posi = i)
-            print(f"Seq {i} appended...")
-            new_sequences.append(new_sequence_temp)
-    if loc == "cdr":
-        for i in range(len(input_sequence)):
-            if i in cdrs:
-                new_sequence_temp = complete_mask(input_sequence = new_sequence_temp, posi = i)
-                print(f"Seq {i} appended...")
-                new_sequences.append(new_sequence_temp)
-    if loc == "fm":
-        for i in range(len(input_sequence)):
-            if i not in cdrs:
-                new_sequence_temp = complete_mask(input_sequence = new_sequence_temp, posi = i)
-                print(f"Seq {i} appended...")
-                new_sequences.append(new_sequence_temp)
-                
+    indices = list(range(len(input_sequence)))
     
-    with open(f"VHH_esm2_{loc}.fasta", "w") as file:
-        for i in range(len(new_sequences)):
-            file.write(f">mask_{i}\n{new_sequences[i]}\n")
-       
+    if loc == "all":
+        if order == 'random':
+            random.shuffle(indices)
+        elif order == 'forward':
+            pass  # already in forward order
+        elif order == 'backward':
+            indices.reverse()
+        for i in indices:
+            print(i)
+            new_sequence_temp = complete_mask(input_sequence=new_sequence_temp, posi=i, temperature=temperature)
+            
+    elif loc == "cdr":
+        cdr_indices = [i for i in indices if i in cdrs]
+        if order == 'random':
+            random.shuffle(cdr_indices)
+        elif order == 'forward':
+            pass  # already in forward order
+        elif order == 'backward':
+            cdr_indices.reverse()
+        for i in cdr_indices:
+            print(i)
+            new_sequence_temp = complete_mask(input_sequence=new_sequence_temp, posi=i, temperature=temperature)
+            
+    elif loc == "fm":
+        fm_indices = [i for i in indices if i not in cdrs]
+        if order == 'random':
+            random.shuffle(fm_indices)
+        elif order == 'forward':
+            pass  # already in forward order
+        elif order == 'backward':
+            fm_indices.reverse()
+        for i in fm_indices:
+            new_sequence_temp = complete_mask(input_sequence=new_sequence_temp, posi=i, temperature=temperature)
     
-    return new_sequences
+    return new_sequence_temp
+
+def generate_batch(total_sequences, input_sequence, cdrs, loc, temperature = 1.0, order='random'):
+    
+    new_sequences = []
+    
+    for i in range(0, total_sequences):
+        temp_seq = generate_Sequence(input_sequence, cdrs, loc, temperature, order)
+        new_sequences.append(temp_seq)
+    
+        
+    with open(f"VHH_esm2_{loc}_{order}_{temperature}.fasta", "w") as file:
+        for i in range(0, total_sequences):
+            file.write(f">seq{i}\n{new_sequences[i]}\n")
+
+
+input_sequence = "MADVQLQASGGGLVQAGGSLRLSCAASGNINTIDVMGWYRQAPGKQRELVADITRLASANYADSVKGRFTISRDNAKNTVYLQMNNLEPKDTAVYYCAQWILSTDHSYMHYWGQGTQVTVTVSS"
+
+cdrs = [25, 26, 27, 28, 29, 30, 31, 51, 52, 53, 54, 55, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
+
+#### Generate for all positions
+all_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="all")
+#### Generate for CDRs
+CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr", order = "random") 
+#### Generate for frameworks
+FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
+
+
+
+#### Generate a batch with 5 sequences
+generate_batch(5, input_sequence, cdrs, "cdr", 1, "random")
+
+
+
+
+
+
+
+
+
