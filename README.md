@@ -27,14 +27,24 @@ Setting up the environment using the .yaml:
 
 ## Running the code
 
+### Parameters
+
+  | Parameter | Description  | 
+  | :---:   | :---: |
+  |total_sequences | Number of sequences to generate
+  |input_sequence | Input sequence to use as template.
+  |cdrs | List containing the CDRs positions
+  |loc | Regions to design. "cdrs", "fm" for framework and "all"
+  |temperature | Temperature applied to logits in token prediction step
+  |order | Starting point for the predictions. "foward", "backward" or "random"
+  
+
 ### Designing Options
-main.py contain 3 usage examples for generate from the entire sequence, only for CDRs and only for frameworks
+functions_esm2.py contain 3 usage examples for generate from the entire sequence, only for CDRs and only for frameworks
 
 <br />
 
 ```python
-from functions_esm2 import generate_Sequence
-
 input_sequence = "MADVQLQASGGGLVQAGGSLRLSCAASGNINTIDVMGWYRQAPGKQRELVADITRLASANYADSVKGRFTISRDNAKNTVYLQMNNLEPKDTAVYYCAQWILSTDHSYMHYWGQGTQVTVTVSS"
 
 cdrs = [25, 26, 27, 28, 29, 30, 31, 51, 52, 53, 54, 55, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
@@ -42,9 +52,14 @@ cdrs = [25, 26, 27, 28, 29, 30, 31, 51, 52, 53, 54, 55, 94, 95, 96, 97, 98, 99, 
 #### Generate for all positions
 all_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="all")
 #### Generate for CDRs
-CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr")
+CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr", order = "random") 
 #### Generate for frameworks
 FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
+
+
+
+#### Generate a batch with 5 sequences
+generate_batch(5, input_sequence, cdrs, "cdr", 1, "random")
 
 ```
 
