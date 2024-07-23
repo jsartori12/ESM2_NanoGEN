@@ -16,19 +16,11 @@ Setting up the environment using the .yaml:
     git clone https://github.com/jsartori12/ESM2_NanoGEN.git
     cd ESM2_NanoGEN
     ```
-2. Download ESM2 repository:
-    ```sh
-    git clone https://github.com/facebookresearch/esm.git
-    ```
-3. Move esm2 content to the repository directory:
-    ```sh
-    mv esm/* ESM2_NanoGEN
-    ```
-4. Create the environment:
+2. Create the environment:
     ```sh
     conda env create -f environment.yaml
     ```
-5. Activate the environment:
+3. Activate the environment:
     ```sh
     conda activate esmfold
     ```
