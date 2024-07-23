@@ -397,4 +397,3 @@ dependencies:
       - wandb==0.12.21
       - werkzeug==2.2.3
       - yarl==1.9.4
-prefix: /home/joao/anaconda3/envs/esmfold
