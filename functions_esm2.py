@@ -154,18 +154,3 @@ def generate_batch(total_sequences, input_sequence, cdrs, loc, temperature = 1.0
             file.write(f">seq{i}\n{new_sequences[i]}\n")
 
 
-input_sequence = "MADVQLQASGGGLVQAGGSLRLSCAASGNINTIDVMGWYRQAPGKQRELVADITRLASANYADSVKGRFTISRDNAKNTVYLQMNNLEPKDTAVYYCAQWILSTDHSYMHYWGQGTQVTVTVSS"
-
-cdrs = [25, 26, 27, 28, 29, 30, 31, 51, 52, 53, 54, 55, 94, 95, 96, 97, 98, 99, 100, 101, 102, 103, 104, 105]
-
-#### Generate for all positions
-all_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="all")
-#### Generate for CDRs
-CDRs_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="cdr", order = "random") 
-#### Generate for frameworks
-FM_new = generate_Sequence(input_sequence=input_sequence, cdrs=cdrs, loc="fm")
-
-
-
-#### Generate a batch with 5 sequences
-generate_batch(5, input_sequence, cdrs, "cdr", 1, "random")
