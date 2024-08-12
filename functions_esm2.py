@@ -41,6 +41,11 @@ def insert_mask(sequence, position, mask="<mask>"):
 
 def complete_mask(input_sequence, posi, temperature=1.0):
     
+    
+    exclude = [alphabet.get_idx('X'), alphabet.get_idx('B'),
+               alphabet.get_idx('U'), alphabet.get_idx('Z'),
+               alphabet.get_idx('O')]
+    
     data = [
         ("protein1", insert_mask(input_sequence, posi, mask="<mask>"))
     ]
@@ -60,10 +65,11 @@ def complete_mask(input_sequence, posi, temperature=1.0):
 
     # Get the index of the <mask> token
     mask_idx = (batch_tokens == alphabet.mask_idx).nonzero(as_tuple=True)
-
-    # Extract the predicted tokens for the masked positions
-    predicted_tokens = torch.argmax(probabilities, dim=-1)
     
+    # Zero out probabilities for excluded tokens
+    for token in exclude:
+        probabilities[:, :, token] = 0.0
+
     # Sample from the probability distribution
     predicted_tokens = torch.multinomial(probabilities[mask_idx], num_samples=1).squeeze(-1)
 
